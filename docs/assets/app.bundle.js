@@ -9029,7 +9029,7 @@ module.exports = function (regExp, replace) {
 
 var _giphy = __webpack_require__(329);
 
-var _ui = __webpack_require__(331);
+var _ui = __webpack_require__(330);
 
 // Add event listeners
 document.addEventListener('DOMContentLoaded', getGiphys);
@@ -9037,7 +9037,7 @@ document.addEventListener('DOMContentLoaded', getGiphys);
 var searchGiphy = document.querySelector('.search__input');
 
 function getGiphys() {
-	_giphy.giphy.get('http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
+	_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
 	// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
 	.then(function (data) {
 		return _ui.ui.showAllGiphys(data);
@@ -9140,8 +9140,7 @@ var giphy = exports.giphy = new GIPHY();
 // }
 
 /***/ }),
-/* 330 */,
-/* 331 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
