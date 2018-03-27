@@ -9031,66 +9031,190 @@ var _giphy = __webpack_require__(329);
 
 var _ui = __webpack_require__(330);
 
-// Add event listeners
-// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
-document.addEventListener('DOMContentLoaded', getGiphysTrending);
-// Search input
-var searchGiphy = document.querySelector('.search__input');
+var giphyPage = document.querySelector('.nav-item--search');
+var stickersPage = document.querySelector('.nav-item--stickers');
+var translatePage = document.querySelector('.nav-item--translate');
+var randomPage = document.querySelector('.nav-item--random');
 
-function getGiphysTrending() {
-	// giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
-	_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
-	// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
-	// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
-	.then(function (data) {
-		return _ui.ui.showAllGiphys(data);
-	})
-	// .then(data => console.log(data))
-	.catch(function (err) {
-		return console.log(err);
+if (giphyPage.classList.contains('active')) {
+	var getGiphysTrending = function getGiphysTrending() {
+		_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+			return _ui.ui.showAllGiphys(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
+			return console.log(err);
+		});
+	};
+
+	var getGiphysSearch = function getGiphysSearch(searchText) {
+		_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+			return _ui.ui.showAllGiphys(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
+			return console.log(err);
+		});
+	};
+
+	console.log('giphyPage');
+	// Add event listeners
+	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
+	document.addEventListener('DOMContentLoaded', getGiphysTrending);
+	// Search input
+	var searchGiphy = document.querySelector('.search__input');
+
+	;
+
+	;
+
+	// Search input event listener
+	searchGiphy.addEventListener('keyup', function (e) {
+		// Get input text
+		var searchText = e.target.value;
+
+		if (searchText !== '') {
+			searchText = searchText.split(' ').join('+');
+			console.log(searchText);
+			// Make http call
+			getGiphysSearch(searchText);
+		} else {
+			// Clear profile
+			getGiphysTrending();
+		}
 	});
-};
+}
 
-// function getGiphys(searchText) {
-// 	// giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
-// 	giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
-// 		// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
-// 		// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
-// 		.then(data => ui.showAllGiphys(data))
-// 		// .then(data => console.log(data))
-// 		.catch(err => console.log(err));
-// };
+if (stickersPage.classList.contains('active')) {
+	var getStickersTrending = function getStickersTrending() {
+		_giphy.giphy.get('https://api.giphy.com/v1/stickers/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+			return _ui.ui.showAllGiphys(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
+			return console.log(err);
+		});
+	};
 
+	var getStickersSearch = function getStickersSearch(searchText) {
+		_giphy.giphy.get('https://api.giphy.com/v1/stickers/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+			return _ui.ui.showAllGiphys(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
+			return console.log(err);
+		});
+	};
 
-function getGiphysSearch(searchText) {
-	_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
-	// giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
-	// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
-	// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
-	.then(function (data) {
-		return _ui.ui.showAllGiphys(data);
-	})
-	// .then(data => console.log(data))
-	.catch(function (err) {
-		return console.log(err);
+	console.log('stickersPage');
+	// Add event listeners
+	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
+	document.addEventListener('DOMContentLoaded', getStickersTrending);
+	// Search input
+	var _searchGiphy = document.querySelector('.search__input');
+
+	;
+
+	;
+
+	// Search input event listener
+	_searchGiphy.addEventListener('keyup', function (e) {
+		// Get input text
+		var searchText = e.target.value;
+
+		if (searchText !== '') {
+			searchText = searchText.split(' ').join('+');
+			console.log(searchText);
+			// Make http call
+			getStickersSearch(searchText);
+		} else {
+			// Clear profile
+			getStickersTrending();
+		}
 	});
-};
+}
 
-// Search input event listener
-searchGiphy.addEventListener('keyup', function (e) {
-	// Get input text
-	var searchText = e.target.value;
+if (translatePage.classList.contains('active')) {
 
-	if (searchText !== '') {
-		searchText = searchText.split(' ').join('+');
-		console.log(searchText);
-		// Make http call
-		getGiphysSearch(searchText);
-	} else {
-		// Clear profile
-		getGiphysTrending();
-	}
-});
+	// 	function getGiphysTrending() {
+	// 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
+	// 			.then(data => ui.showAllGiphys(data))
+	// 			// .then(data => console.log(data))
+	// 			.catch(err => console.log(err));
+	// 	};
+
+	var getTranslateSearch = function getTranslateSearch(searchText) {
+		_giphy.giphy.get('https://api.giphy.com/v1/gifs/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+			return _ui.ui.showTranslate(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
+			return console.log(err);
+		});
+	};
+
+	console.log('translatePage');
+	// Add event listeners
+	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
+	document.addEventListener('DOMContentLoaded', getTranslateSearch('morning'));
+	// Search input
+	var _searchGiphy2 = document.querySelector('.search__input');;
+
+	// Search input event listener
+	_searchGiphy2.addEventListener('keyup', function (e) {
+		// Get input text
+		var searchText = e.target.value;
+
+		if (searchText !== '') {
+			searchText = searchText.split(' ').join('+');
+			console.log(searchText);
+			// Make http call
+			getTranslateSearch(searchText);
+		} else {
+			// Clear profile
+			getTranslateSearch('morning');
+		}
+	});
+}
+
+// if (randomPage.classList.contains('active')) {
+// 	console.log('randomPage');
+// 	// Add event listeners
+// 	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
+// 	document.addEventListener('DOMContentLoaded', getGiphysTrending);
+// 	// Search input
+// 	const searchGiphy = document.querySelector('.search__input');
+
+// 	function getGiphysTrending() {
+// 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
+// 			.then(data => ui.showAllGiphys(data))
+// 			// .then(data => console.log(data))
+// 			.catch(err => console.log(err));
+// 	};
+
+// 	function getGiphysSearch(searchText) {
+// 		giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
+// 			.then(data => ui.showAllGiphys(data))
+// 			// .then(data => console.log(data))
+// 			.catch(err => console.log(err));
+// 	};
+
+// 	// Search input event listener
+// 	searchGiphy.addEventListener('keyup', (e) => {
+// 		// Get input text
+// 		let searchText = e.target.value;
+
+// 		if (searchText !== '') {
+// 			searchText = searchText.split(' ').join('+');
+// 			console.log(searchText);
+// 			// Make http call
+// 			getGiphysSearch(searchText);
+// 		} else {
+// 			// Clear profile
+// 			getGiphysTrending();
+// 		}
+// 	});
+// }
 
 /***/ }),
 /* 329 */
@@ -9204,6 +9328,7 @@ var UI = function () {
 
 		this.giphyContainer = document.querySelector('#giphy');
 		this.responseReceived = [];
+		this.receivedGif;
 	}
 
 	_createClass(UI, [{
@@ -9217,6 +9342,13 @@ var UI = function () {
 			});
 
 			this.giphyContainer.innerHTML = output;
+		}
+	}, {
+		key: 'showTranslate',
+		value: function showTranslate(data) {
+			this.receivedGif = data.data;
+			console.log(this.receivedGif);
+			this.giphyContainer.innerHTML = '\n\t\t\t<div class="card m-2">\n\t\t\t\t<a href="' + this.receivedGif.images.original.url + '">\n\t\t\t\t\t<img class="card-img" src="' + this.receivedGif.images.fixed_height.url + '" style="width:' + this.receivedGif.images.fixed_height.width + '; height:' + this.receivedGif.images.fixed_height.height + '" alt="Card image">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t';
 		}
 	}]);
 

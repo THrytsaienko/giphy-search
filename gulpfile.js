@@ -25,7 +25,7 @@ gulp.task('sprites', function () {
 });
 
 gulp.task('html', function(){
-	return gulp.src('./index.html')
+	return gulp.src('./*.html')
 		.pipe(gulp.dest('docs'))
 });
 
@@ -59,7 +59,7 @@ var reload = function(done){
 }
 
 gulp.task('watch', function() {
-	gulp.watch('./index.html', gulp.series('html', reload));
+	gulp.watch('./*.html', gulp.series('html', reload));
 	gulp.watch('./src/sass/*.sass', gulp.series('sass'));
 });
 

@@ -1,5 +1,6 @@
 .container
-	width: 1040px
+	width: 100%
+	max-width: 1040px
 	margin: 0 auto
 	padding: 0 20px
 
@@ -8,10 +9,44 @@
 
 .logo
 	width: 150px
-	// text-transform: uppercase
-	// font-weight: 900
 
 .search__icon
 	width: 30px
 	height: 30px
 	fill: #fff
+
+.navbar
+	background: transparent
+	font-weight: 500
+
+.nav-item--search
+	border-bottom: 3px solid #00ff99
+	transition: background-color .5s
+	&:hover
+		background-color: #00ff99
+	
+.nav-item--stickers
+	border-bottom: 3px solid #61d0fc
+	transition: background-color .5s
+	&:hover
+		background-color: #61d0fc
+
+.nav-item--translate
+	border-bottom: 3px solid #3939fa
+	transition: background-color .5s
+	&:hover
+		background-color: #3939fa
+
+.nav-item--random
+	border-bottom: 3px solid #ba32fa
+	transition: background-color .5s
+	&:hover
+		background-color: #ba32fa
+
+.custom-radio
+	input[type="radio"]
+		display: none
+	&-label
+		cursor: pointer
+	input:checked + label
+		background: red

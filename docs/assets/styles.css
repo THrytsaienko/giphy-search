@@ -23,7 +23,8 @@ body {
   background: linear-gradient(to right bottom, #0f0c29, #302b63, #24243e); }
 
 .container {
-  width: 1040px;
+  width: 100%;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 0 20px; }
 
@@ -37,3 +38,44 @@ body {
   width: 30px;
   height: 30px;
   fill: #fff; }
+
+.navbar {
+  background: transparent;
+  font-weight: 500; }
+
+.nav-item--search {
+  border-bottom: 3px solid #00ff99;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .nav-item--search:hover {
+    background-color: #00ff99; }
+
+.nav-item--stickers {
+  border-bottom: 3px solid #61d0fc;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .nav-item--stickers:hover {
+    background-color: #61d0fc; }
+
+.nav-item--translate {
+  border-bottom: 3px solid #3939fa;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .nav-item--translate:hover {
+    background-color: #3939fa; }
+
+.nav-item--random {
+  border-bottom: 3px solid #ba32fa;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .nav-item--random:hover {
+    background-color: #ba32fa; }
+
+.custom-radio input[type="radio"] {
+  display: none; }
+
+.custom-radio-label {
+  cursor: pointer; }
+
+.custom-radio input:checked + label {
+  background: red; }
