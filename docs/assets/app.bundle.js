@@ -9035,6 +9035,7 @@ var giphyPage = document.querySelector('.nav-item--search');
 var stickersPage = document.querySelector('.nav-item--stickers');
 var translatePage = document.querySelector('.nav-item--translate');
 var randomPage = document.querySelector('.nav-item--random');
+var radioButton = void 0;
 
 if (giphyPage.classList.contains('active')) {
 	var getGiphysTrending = function getGiphysTrending() {
@@ -9135,46 +9136,76 @@ if (stickersPage.classList.contains('active')) {
 }
 
 if (translatePage.classList.contains('active')) {
+	(function () {
+		var getTranslateSearchGif = function getTranslateSearchGif(searchText) {
+			_giphy.giphy.get('https://api.giphy.com/v1/gifs/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+				return _ui.ui.showTranslate(data);
+			})
+			// .then(data => console.log(data))
+			.catch(function (err) {
+				return console.log(err);
+			});
+		};
 
-	// 	function getGiphysTrending() {
-	// 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-	// 			.then(data => ui.showAllGiphys(data))
-	// 			// .then(data => console.log(data))
-	// 			.catch(err => console.log(err));
-	// 	};
+		var getTranslateSearchSticker = function getTranslateSearchSticker(searchText) {
+			_giphy.giphy.get('https://api.giphy.com/v1/stickers/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
+				return _ui.ui.showTranslate(data);
+			})
+			// .then(data => console.log(data))
+			.catch(function (err) {
+				return console.log(err);
+			});
+		};
 
-	var getTranslateSearch = function getTranslateSearch(searchText) {
-		_giphy.giphy.get('https://api.giphy.com/v1/gifs/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
-			return _ui.ui.showTranslate(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
-			return console.log(err);
-		});
-	};
+		console.log('translatePage');
+		// Search input
+		var searchGiphy = document.querySelector('.search__input');
 
-	console.log('translatePage');
-	// Add event listeners
-	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
-	document.addEventListener('DOMContentLoaded', getTranslateSearch('morning'));
-	// Search input
-	var _searchGiphy2 = document.querySelector('.search__input');;
-
-	// Search input event listener
-	_searchGiphy2.addEventListener('keyup', function (e) {
-		// Get input text
-		var searchText = e.target.value;
-
-		if (searchText !== '') {
-			searchText = searchText.split(' ').join('+');
-			console.log(searchText);
-			// Make http call
-			getTranslateSearch(searchText);
-		} else {
-			// Clear profile
-			getTranslateSearch('morning');
+		for (var i = 0; i < document.getElementsByName('radioButton').length; i++) {
+			document.getElementsByName('radioButton')[i].onclick = function () {
+				//VALUE OF THE CLICKED RADIO ELEMENT
+				// alert(`this : ${this.value}`);
+				radioButton = this.value;
+				console.log(radioButton);
+				if (searchGiphy.value !== '') {
+					if (radioButton === 'Gif') {
+						console.log('Checked Gif');
+						getTranslateSearchGif(searchGiphy.value);
+					} else if (radioButton === 'Sticker') {
+						console.log('Checked Sticker');
+						getTranslateSearchSticker(searchGiphy.value);
+					}
+				}
+			};
 		}
-	});
+
+		// Search input event listener
+		searchGiphy.addEventListener('keyup', function (e) {
+			// Get input text
+			var searchText = e.target.value;
+
+			if (searchText !== '') {
+				searchText = searchText.split(' ').join('+');
+				console.log(searchText);
+				if (radioButton === 'Gif') {
+					console.log('Checked Gif');
+					getTranslateSearchGif(searchText);
+				} else if (radioButton === 'Sticker') {
+					console.log('Checked Sticker');
+					getTranslateSearchSticker(searchText);
+				}
+				// Make http call
+				// getStickersSearch(searchText);
+			} else {
+					// Clear profile
+					// getStickersTrending();
+				}
+		});
+
+		;
+
+		;
+	})();
 }
 
 // if (randomPage.classList.contains('active')) {

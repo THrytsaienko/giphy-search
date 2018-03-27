@@ -9,6 +9,7 @@ const giphyPage = document.querySelector('.nav-item--search');
 const stickersPage = document.querySelector('.nav-item--stickers');
 const translatePage = document.querySelector('.nav-item--translate');
 const randomPage = document.querySelector('.nav-item--random');
+let radioButton;
 
 if (giphyPage.classList.contains('active')) {
 	console.log('giphyPage');
@@ -90,25 +91,26 @@ if (stickersPage.classList.contains('active')) {
 
 if (translatePage.classList.contains('active')) {
 	console.log('translatePage');
-	// Add event listeners
-	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
-	document.addEventListener('DOMContentLoaded', getTranslateSearch('morning'));
 	// Search input
 	const searchGiphy = document.querySelector('.search__input');
 
-// 	function getGiphysTrending() {
-// 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-// 			.then(data => ui.showAllGiphys(data))
-// 			// .then(data => console.log(data))
-// 			.catch(err => console.log(err));
-// 	};
-
-	function getTranslateSearch(searchText) {
-		giphy.get(`https://api.giphy.com/v1/gifs/translate?s=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-			.then(data => ui.showTranslate(data))
-			// .then(data => console.log(data))
-			.catch(err => console.log(err));
-	};
+	for (let i = 0; i < document.getElementsByName('radioButton').length; i++) {
+		document.getElementsByName('radioButton')[i].onclick = function () {
+			//VALUE OF THE CLICKED RADIO ELEMENT
+			// alert(`this : ${this.value}`);
+			radioButton = this.value;
+			console.log(radioButton);
+			if (searchGiphy.value !== ''){
+				if (radioButton === 'Gif') {
+					console.log('Checked Gif');
+					getTranslateSearchGif(searchGiphy.value);
+				} else if (radioButton === 'Sticker') {
+					console.log('Checked Sticker');
+					getTranslateSearchSticker(searchGiphy.value);
+				}
+			}
+		}
+	}
 
 	// Search input event listener
 	searchGiphy.addEventListener('keyup', (e) => {
@@ -118,14 +120,36 @@ if (translatePage.classList.contains('active')) {
 		if (searchText !== '') {
 			searchText = searchText.split(' ').join('+');
 			console.log(searchText);
+			if (radioButton === 'Gif') {
+				console.log('Checked Gif');
+				getTranslateSearchGif(searchText);
+			} else if (radioButton === 'Sticker') {
+				console.log('Checked Sticker');
+				getTranslateSearchSticker(searchText);
+			}
 			// Make http call
-			getTranslateSearch(searchText);
+			// getStickersSearch(searchText);
 		} else {
 			// Clear profile
-			getTranslateSearch('morning');
+			// getStickersTrending();
 		}
 	});
+
+	function getTranslateSearchGif(searchText) {
+		giphy.get(`https://api.giphy.com/v1/gifs/translate?s=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
+			.then(data => ui.showTranslate(data))
+			// .then(data => console.log(data))
+			.catch(err => console.log(err));
+	};
+
+	function getTranslateSearchSticker(searchText) {
+		giphy.get(`https://api.giphy.com/v1/stickers/translate?s=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
+			.then(data => ui.showTranslate(data))
+			// .then(data => console.log(data))
+			.catch(err => console.log(err));
+	};
 }
+
 
 // if (randomPage.classList.contains('active')) {
 // 	console.log('randomPage');
