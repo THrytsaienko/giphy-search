@@ -71,11 +71,33 @@ body {
   .nav-item--random:hover {
     background-color: #ba32fa; }
 
-.custom-radio input[type="radio"] {
+.gifLabel {
+  background-color: #00ff99;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .gifLabel:hover {
+    background-color: #00b36b; }
+
+.stickerLabel {
+  background-color: #61d0fc;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s; }
+  .stickerLabel:hover {
+    background-color: #05aff2; }
+
+.custom-radio label:after {
+  background-image: none !important;
   display: none; }
 
-.custom-radio-label {
+.custom-radio label:before {
+  content: '';
+  display: none; }
+
+.custom-radio label {
   cursor: pointer; }
 
 .custom-radio input:checked + label {
-  background: red; }
+  background-color: #eeee0e; }
+
+.custom-control-label {
+  font-weight: 500; }

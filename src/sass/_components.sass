@@ -18,13 +18,13 @@
 .navbar
 	background: transparent
 	font-weight: 500
-
+	
 .nav-item--search
 	border-bottom: 3px solid #00ff99
 	transition: background-color .5s
 	&:hover
 		background-color: #00ff99
-	
+		   
 .nav-item--stickers
 	border-bottom: 3px solid #61d0fc
 	transition: background-color .5s
@@ -43,10 +43,30 @@
 	&:hover
 		background-color: #ba32fa
 
+.gifLabel
+	background-color: #00ff99
+	transition: background-color .5s
+	&:hover
+		background-color: darken(#00ff99, 15%)
+
+.stickerLabel
+	background-color: #61d0fc
+	transition: background-color .5s
+	&:hover
+		background-color: darken(#61d0fc, 20%)
+
 .custom-radio
-	input[type="radio"]
+	label:after
+		background-image: none !important
 		display: none
-	&-label
+	label:after
+	label:before
+		content: ''
+		display: none
+	label
 		cursor: pointer
 	input:checked + label
-		background: red
+		background-color: #eeee0e
+
+.custom-control-label
+	font-weight: 500
