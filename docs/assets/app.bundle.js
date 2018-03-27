@@ -9032,12 +9032,15 @@ var _giphy = __webpack_require__(329);
 var _ui = __webpack_require__(330);
 
 // Add event listeners
-document.addEventListener('DOMContentLoaded', getGiphys);
+// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
+document.addEventListener('DOMContentLoaded', getGiphysTrending);
 // Search input
 var searchGiphy = document.querySelector('.search__input');
 
-function getGiphys() {
-	_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
+function getGiphysTrending() {
+	// giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
+	_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
+	// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
 	// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
 	.then(function (data) {
 		return _ui.ui.showAllGiphys(data);
@@ -9047,6 +9050,47 @@ function getGiphys() {
 		return console.log(err);
 	});
 };
+
+// function getGiphys(searchText) {
+// 	// giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
+// 	giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
+// 		// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
+// 		// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
+// 		.then(data => ui.showAllGiphys(data))
+// 		// .then(data => console.log(data))
+// 		.catch(err => console.log(err));
+// };
+
+
+function getGiphysSearch(searchText) {
+	_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
+	// giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=5`)
+	// giphy.get('https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4')
+	// giphy.get('http://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10')
+	.then(function (data) {
+		return _ui.ui.showAllGiphys(data);
+	})
+	// .then(data => console.log(data))
+	.catch(function (err) {
+		return console.log(err);
+	});
+};
+
+// Search input event listener
+searchGiphy.addEventListener('keyup', function (e) {
+	// Get input text
+	var searchText = e.target.value;
+
+	if (searchText !== '') {
+		searchText = searchText.split(' ').join('+');
+		console.log(searchText);
+		// Make http call
+		getGiphysSearch(searchText);
+	} else {
+		// Clear profile
+		getGiphysTrending();
+	}
+});
 
 /***/ }),
 /* 329 */
@@ -9150,8 +9194,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9169,10 +9211,6 @@ var UI = function () {
 		value: function showAllGiphys(giphys) {
 			this.responseReceived = giphys.data;
 			var output = '';
-
-			console.log(typeof giphys === 'undefined' ? 'undefined' : _typeof(giphys));
-			console.log(_typeof(giphys.data));
-			console.log(giphys.data);
 
 			this.responseReceived.forEach(function (giphy, index) {
 				return output += '\n\t\t\t\t\t<div class="card m-2">\n\t\t\t\t\t\t<a href="' + giphy.images.original.url + '">\n\t\t\t\t\t\t\t<img class="card-img" src="' + giphy.images.fixed_height.url + '" style="width:' + giphy.images.fixed_height.width + '; height:' + giphy.images.fixed_height.height + '" alt="Card image">\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t';

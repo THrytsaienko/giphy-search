@@ -8,10 +8,6 @@ class UI {
 		this.responseReceived = giphys.data;
 		let output = '';
 
-		console.log(typeof giphys);
-		console.log(typeof giphys.data);
-		console.log(giphys.data);
-
 		this.responseReceived.forEach((giphy, index) => {
 			return output +=  `
 					<div class="card m-2">
@@ -22,8 +18,8 @@ class UI {
 				`;
 			});
 
-	this.giphyContainer.innerHTML = output;
-}
+		this.giphyContainer.innerHTML = output;
+	}
 }
 
 export const ui = new UI();
