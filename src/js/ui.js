@@ -33,6 +33,16 @@ class UI {
 			</div>
 		`;
 	}
+
+	showTV(data) {
+		console.log('tvPage in ui');
+		this.receivedGif = data.data;
+		console.log(this.receivedGif);
+		this.giphyContainer.innerHTML = `
+			<div class="aaa" style="background-image: url(${this.receivedGif.images.original.url});">
+			</div>
+		`;
+	}
 }
 
 export const ui = new UI();

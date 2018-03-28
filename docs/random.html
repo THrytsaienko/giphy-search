@@ -50,14 +50,29 @@
 					<li class="nav-item nav-item--translate mr-3">
 						<a class="nav-link" href="translate.html">Translate</a>
 					</li>
-					<li class="nav-item nav-item--random active">
-						<a class="nav-link" href="random.html">Random
+					<li class="nav-item nav-item--random mr-3 active">
+						<a class="nav-link" href="random.html">Roulette
 							<span class="sr-only">(current)</span>
 						</a>
+					</li>
+					<li class="nav-item nav-item--tv">
+						<a class="nav-link" href="giphy-tv.html">TV</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
+
+		<div class="float-right text-white mb-3 radioStickerButton">
+			<div class="custom-control custom-radio custom-control-inline mx-0">
+				<input type="radio" id="gifRadioButton" name="radioButton" class="custom-control-input" value="Gif">
+				<label class="custom-control-label gifLabel px-4" for="gifRadioButton">Gif</label>
+			</div>
+
+			<div class="custom-control custom-radio custom-control-inline mx-0">
+				<input type="radio" id="stickerRadioButton" name="radioButton" class="custom-control-input" value="Sticker">
+				<label class="custom-control-label stickerLabel px-2" for="stickerRadioButton">Sticker</label>
+			</div>
+		</div>
 
 		<div class="input-group my-3 search">
 			<input type="text" class="form-control search__input" placeholder="Search all the GIFs" aria-label="Search all the GIFs"

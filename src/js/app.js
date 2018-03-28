@@ -9,6 +9,7 @@ const giphyPage = document.querySelector('.nav-item--search');
 const stickersPage = document.querySelector('.nav-item--stickers');
 const translatePage = document.querySelector('.nav-item--translate');
 const randomPage = document.querySelector('.nav-item--random');
+const tvPage = document.querySelector('.nav-item--tv');
 let radioButton;
 
 if (giphyPage.classList.contains('active')) {
@@ -100,7 +101,7 @@ if (translatePage.classList.contains('active')) {
 			// alert(`this : ${this.value}`);
 			radioButton = this.value;
 			console.log(radioButton);
-			if (searchGiphy.value !== ''){
+			if (searchGiphy.value !== '') {
 				if (radioButton === 'Gif') {
 					console.log('Checked Gif');
 					getTranslateSearchGif(searchGiphy.value);
@@ -151,41 +152,75 @@ if (translatePage.classList.contains('active')) {
 }
 
 
-// if (randomPage.classList.contains('active')) {
-// 	console.log('randomPage');
-// 	// Add event listeners
-// 	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
-// 	document.addEventListener('DOMContentLoaded', getGiphysTrending);
-// 	// Search input
-// 	const searchGiphy = document.querySelector('.search__input');
+if (randomPage.classList.contains('active')) {
+	console.log('randomPage');
+	// Search input
+	const searchGiphy = document.querySelector('.search__input');
 
-// 	function getGiphysTrending() {
-// 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-// 			.then(data => ui.showAllGiphys(data))
-// 			// .then(data => console.log(data))
-// 			.catch(err => console.log(err));
-// 	};
+	for (let i = 0; i < document.getElementsByName('radioButton').length; i++) {
+		document.getElementsByName('radioButton')[i].onclick = function () {
+			//VALUE OF THE CLICKED RADIO ELEMENT
+			// alert(`this : ${this.value}`);
+			radioButton = this.value;
+			console.log(radioButton);
 
-// 	function getGiphysSearch(searchText) {
-// 		giphy.get(`https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-// 			.then(data => ui.showAllGiphys(data))
-// 			// .then(data => console.log(data))
-// 			.catch(err => console.log(err));
-// 	};
+			if (radioButton === 'Gif') {
+				console.log('Checked Gif');
+				getRandomSearchGif(`tag=${searchGiphy.value}&`);
+			} else if (radioButton === 'Sticker') {
+				console.log('Checked Sticker');
+				getRandomSearchSticker(`tag=${searchGiphy.value}&`);
+			}
+			// if (searchGiphy.value !== '') {
+			// 	if (radioButton === 'Gif') {
+			// 		console.log('Checked Gif');
+			// 		getRandomSearchGif(`tag=${searchGiphy.value}&`);
+			// 	} else if (radioButton === 'Sticker') {
+			// 		console.log('Checked Sticker');
+			// 		getRandomSearchSticker(`tag=${searchGiphy.value}&`);
+			// 	}
+			// }
+		}
+	}
 
-// 	// Search input event listener
-// 	searchGiphy.addEventListener('keyup', (e) => {
-// 		// Get input text
-// 		let searchText = e.target.value;
+	// Search input event listener
+	searchGiphy.addEventListener('keyup', (e) => {
+		// Get input text
+		let searchText = e.target.value;
 
-// 		if (searchText !== '') {
-// 			searchText = searchText.split(' ').join('+');
-// 			console.log(searchText);
-// 			// Make http call
-// 			getGiphysSearch(searchText);
-// 		} else {
-// 			// Clear profile
-// 			getGiphysTrending();
-// 		}
-// 	});
-// }
+
+		searchText = searchText.split(' ').join('+');
+		console.log(searchText);
+		if (radioButton === 'Gif') {
+			console.log('Checked Gif');
+			getRandomSearchGif(`tag=${searchText}&`);
+		} else if (radioButton === 'Sticker') {
+			console.log('Checked Sticker');
+			getRandomSearchSticker(`tag=${searchText}&`);
+		}
+	});
+
+	function getRandomSearchGif(searchText) {
+		giphy.get(`https://api.giphy.com/v1/gifs/random?${searchText}api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4`)
+			.then(data => ui.showTranslate(data))
+			// .then(data => console.log(data))
+			.catch(err => console.log(err));
+	};
+
+	function getRandomSearchSticker(searchText) {
+		giphy.get(`https://api.giphy.com/v1/stickers/random?${searchText}api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4`)
+			.then(data => ui.showTranslate(data))
+			// .then(data => console.log(data))
+			.catch(err => console.log(err));
+	};
+}
+
+if (tvPage.classList.contains('active')) {
+	console.log('tvPage');
+	function getGiphysTV() {
+		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=2`)
+			// .then(data => ui.showTV(data))
+			.then(data => console.log(data))
+			.catch(err => console.log(err));
+	};
+}
