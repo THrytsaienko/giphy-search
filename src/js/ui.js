@@ -24,7 +24,7 @@ class UI {
 		this.giphyContainer.innerHTML = output;
 	}
 
-	showTranslate(data) {
+	showOneGif(data) {
 		this.receivedGif = data.data;
 		console.log(this.receivedGif);
 		this.giphyContainer.innerHTML = `

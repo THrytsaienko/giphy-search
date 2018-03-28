@@ -5,6 +5,7 @@ import {
 	ui
 } from './ui';
 
+const searchGiphy = document.querySelector('.search__input');
 const giphyPage = document.querySelector('.nav-item--search');
 const stickersPage = document.querySelector('.nav-item--stickers');
 const translatePage = document.querySelector('.nav-item--translate');
@@ -12,11 +13,9 @@ const randomPage = document.querySelector('.nav-item--random');
 const tvPage = document.querySelector('.nav-item--tv');
 let radioButton;
 
+// Check on what page we are - what page is active
 if (giphyPage.classList.contains('active')) {
 	document.addEventListener('DOMContentLoaded', getGiphysTrending);
-
-	// Search input
-	const searchGiphy = document.querySelector('.search__input');
 
 	function getGiphysTrending() {
 		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
@@ -50,9 +49,6 @@ if (giphyPage.classList.contains('active')) {
 if (stickersPage.classList.contains('active')) {
 	document.addEventListener('DOMContentLoaded', getStickersTrending);
 
-	// Search input
-	const searchGiphy = document.querySelector('.search__input');
-
 	function getStickersTrending() {
 		giphy.get(`https://api.giphy.com/v1/stickers/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
 			.then(data => ui.showAllGiphys(data))
@@ -83,9 +79,6 @@ if (stickersPage.classList.contains('active')) {
 }
 
 if (translatePage.classList.contains('active')) {
-	// Search input
-	const searchGiphy = document.querySelector('.search__input');
-
 	for (let i = 0; i < document.getElementsByName('radioButton').length; i++) {
 		document.getElementsByName('radioButton')[i].onclick = function () {
 			// Value of the clicked radio button
@@ -125,22 +118,19 @@ if (translatePage.classList.contains('active')) {
 
 	function getTranslateSearchGif(searchText) {
 		giphy.get(`https://api.giphy.com/v1/gifs/translate?s=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-			.then(data => ui.showTranslate(data))
+			.then(data => ui.showOneGif(data))
 			.catch(err => console.log(err));
 	};
 
 	function getTranslateSearchSticker(searchText) {
 		giphy.get(`https://api.giphy.com/v1/stickers/translate?s=${searchText}&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10`)
-			.then(data => ui.showTranslate(data))
+			.then(data => ui.showOneGif(data))
 			.catch(err => console.log(err));
 	};
 }
 
 
 if (randomPage.classList.contains('active')) {
-	// Search input
-	const searchGiphy = document.querySelector('.search__input');
-
 	for (let i = 0; i < document.getElementsByName('radioButton').length; i++) {
 		document.getElementsByName('radioButton')[i].onclick = function () {
 			// Value of the clicked radio button
@@ -175,13 +165,13 @@ if (randomPage.classList.contains('active')) {
 
 	function getRandomSearchGif(searchText) {
 		giphy.get(`https://api.giphy.com/v1/gifs/random?${searchText}api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4`)
-			.then(data => ui.showTranslate(data))
+			.then(data => ui.showOneGif(data))
 			.catch(err => console.log(err));
 	};
 
 	function getRandomSearchSticker(searchText) {
 		giphy.get(`https://api.giphy.com/v1/stickers/random?${searchText}api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4`)
-			.then(data => ui.showTranslate(data))
+			.then(data => ui.showOneGif(data))
 			.catch(err => console.log(err));
 	};
 }

@@ -9031,6 +9031,7 @@ var _giphy = __webpack_require__(329);
 
 var _ui = __webpack_require__(330);
 
+var searchGiphy = document.querySelector('.search__input');
 var giphyPage = document.querySelector('.nav-item--search');
 var stickersPage = document.querySelector('.nav-item--stickers');
 var translatePage = document.querySelector('.nav-item--translate');
@@ -9038,6 +9039,7 @@ var randomPage = document.querySelector('.nav-item--random');
 var tvPage = document.querySelector('.nav-item--tv');
 var radioButton = void 0;
 
+// Check on what page we are - what page is active
 if (giphyPage.classList.contains('active')) {
 	var getGiphysTrending = function getGiphysTrending() {
 		_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
@@ -9056,9 +9058,6 @@ if (giphyPage.classList.contains('active')) {
 	};
 
 	document.addEventListener('DOMContentLoaded', getGiphysTrending);
-
-	// Search input
-	var searchGiphy = document.querySelector('.search__input');
 
 	;
 
@@ -9100,15 +9099,12 @@ if (stickersPage.classList.contains('active')) {
 
 	document.addEventListener('DOMContentLoaded', getStickersTrending);
 
-	// Search input
-	var _searchGiphy = document.querySelector('.search__input');
-
 	;
 
 	;
 
 	// Search input event listener
-	_searchGiphy.addEventListener('keyup', function (e) {
+	searchGiphy.addEventListener('keyup', function (e) {
 
 		// Get input text
 		var searchText = e.target.value;
@@ -9128,7 +9124,7 @@ if (translatePage.classList.contains('active')) {
 	(function () {
 		var getTranslateSearchGif = function getTranslateSearchGif(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/gifs/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
-				return _ui.ui.showTranslate(data);
+				return _ui.ui.showOneGif(data);
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -9136,14 +9132,11 @@ if (translatePage.classList.contains('active')) {
 
 		var getTranslateSearchSticker = function getTranslateSearchSticker(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/stickers/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
-				return _ui.ui.showTranslate(data);
+				return _ui.ui.showOneGif(data);
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
-
-		// Search input
-		var searchGiphy = document.querySelector('.search__input');
 
 		for (var i = 0; i < document.getElementsByName('radioButton').length; i++) {
 			document.getElementsByName('radioButton')[i].onclick = function () {
@@ -9192,7 +9185,7 @@ if (randomPage.classList.contains('active')) {
 	(function () {
 		var getRandomSearchGif = function getRandomSearchGif(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/gifs/random?' + searchText + 'api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4').then(function (data) {
-				return _ui.ui.showTranslate(data);
+				return _ui.ui.showOneGif(data);
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -9200,14 +9193,11 @@ if (randomPage.classList.contains('active')) {
 
 		var getRandomSearchSticker = function getRandomSearchSticker(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/stickers/random?' + searchText + 'api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4').then(function (data) {
-				return _ui.ui.showTranslate(data);
+				return _ui.ui.showOneGif(data);
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
-
-		// Search input
-		var searchGiphy = document.querySelector('.search__input');
 
 		for (var i = 0; i < document.getElementsByName('radioButton').length; i++) {
 			document.getElementsByName('radioButton')[i].onclick = function () {
@@ -9395,8 +9385,8 @@ var UI = function () {
 			this.giphyContainer.innerHTML = output;
 		}
 	}, {
-		key: 'showTranslate',
-		value: function showTranslate(data) {
+		key: 'showOneGif',
+		value: function showOneGif(data) {
 			this.receivedGif = data.data;
 			console.log(this.receivedGif);
 			this.giphyContainer.innerHTML = '\n\t\t\t<div class="card m-2">\n\t\t\t\t<a href="' + this.receivedGif.images.original.url + '">\n\t\t\t\t\t<img class="card-img" src="' + this.receivedGif.images.fixed_height.url + '" style="width:' + this.receivedGif.images.fixed_height.width + '; height:' + this.receivedGif.images.fixed_height.height + '" alt="Card image">\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t';
