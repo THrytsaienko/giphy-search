@@ -9285,17 +9285,23 @@ if (randomPage.classList.contains('active')) {
 
 if (tvPage.classList.contains('active')) {
 	var getGiphysTV = function getGiphysTV() {
-		_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=2')
-		// .then(data => ui.showTV(data))
-		.then(function (data) {
-			return console.log(data);
-		}).catch(function (err) {
+		_giphy.giphy.get('https://api.giphy.com/v1/gifs/random?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=1').then(function (data) {
+			return _ui.ui.showTV(data);
+		})
+		// .then(data => console.log(data))
+		.catch(function (err) {
 			return console.log(err);
 		});
 	};
 
 	console.log('tvPage');
+	document.addEventListener('DOMContentLoaded', getGiphysTV);
+
 	;
+
+	setInterval(function () {
+		getGiphysTV();
+	}, 10000);
 }
 
 /***/ }),
@@ -9411,6 +9417,8 @@ var UI = function () {
 		this.giphyContainer = document.querySelector('#giphy');
 		this.responseReceived = [];
 		this.receivedGif;
+		this.receivedGifForTV;
+		this.TVGifs;
 	}
 
 	_createClass(UI, [{
@@ -9434,11 +9442,12 @@ var UI = function () {
 		}
 	}, {
 		key: 'showTV',
-		value: function showTV(data) {
+		value: function showTV() {
+			var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.receivedGifForTV;
+
 			console.log('tvPage in ui');
-			this.receivedGif = data.data;
-			console.log(this.receivedGif);
-			this.giphyContainer.innerHTML = '\n\t\t\t<div class="aaa" style="background-image: url(' + this.receivedGif.images.original.url + ');">\n\t\t\t</div>\n\t\t';
+			this.receivedGifForTV = data.data;
+			this.giphyContainer.innerHTML = '\n\t\t\t<div class="aaa" style="background-image:url(' + this.receivedGifForTV.images.original.url + ');">\n\t\t\t</div>\n\t\t';
 		}
 	}]);
 

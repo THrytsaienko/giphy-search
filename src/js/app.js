@@ -217,10 +217,16 @@ if (randomPage.classList.contains('active')) {
 
 if (tvPage.classList.contains('active')) {
 	console.log('tvPage');
+	document.addEventListener('DOMContentLoaded', getGiphysTV);
+
 	function getGiphysTV() {
-		giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=2`)
-			// .then(data => ui.showTV(data))
-			.then(data => console.log(data))
+		giphy.get(`https://api.giphy.com/v1/gifs/random?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=1`)
+			.then(data => ui.showTV(data))
+			// .then(data => console.log(data))
 			.catch(err => console.log(err));
 	};
+
+	setInterval(function () {
+		getGiphysTV();
+	}, 10000);
 }
