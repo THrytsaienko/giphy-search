@@ -36,13 +36,16 @@ class UI {
 		`;
 	}
 
-	showTV(data = this.receivedGifForTV) {
-		console.log('tvPage in ui');
+	showTV(data) {
 		this.receivedGifForTV = data.data;
 		this.giphyContainer.innerHTML = `
-			<div class="aaa" style="background-image:url(${this.receivedGifForTV.images.original.url});">
+			<div class="tv-screen" style="background-image:url(${this.receivedGifForTV.images.original.url});">
 			</div>
 		`;
+	}
+
+	clearGiphyContainer(){
+		this.giphyContainer.innerHTML = '';
 	}
 }
 

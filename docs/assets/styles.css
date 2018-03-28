@@ -37,7 +37,7 @@ body {
 .search__icon {
   width: 30px;
   height: 30px;
-  fill: #fff; }
+  fill: #ffffff; }
 
 .navbar {
   background: transparent;
@@ -104,29 +104,23 @@ body {
   cursor: pointer; }
 
 .custom-radio input:checked + label {
-  background-color: #eeee0e; }
+  background-color: #dada0a; }
 
 .custom-control-label {
   font-weight: 500; }
 
 .container-tv {
-  width: 100%;
-  height: 100vh;
   position: relative; }
   .container-tv .navbar {
     position: absolute;
-    left: 2%;
-    top: 2%;
+    left: 1%;
     opacity: .5;
     z-index: 10; }
-  .container-tv #giphy {
-    width: 100%;
-    height: 100vh; }
   .container-tv .navbar-toggler,
   .container-tv .collapse {
     display: none !important; }
 
-.aaa {
+.tv-screen {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -138,3 +132,13 @@ body {
 
 .input-group-append {
   display: none; }
+
+.recommend__text {
+  font-size: 12px; }
+
+.recommend__icon {
+  width: 20px;
+  height: 20px;
+  -webkit-transform: skew(30deg);
+          transform: skew(30deg);
+  fill: #ba32fa; }

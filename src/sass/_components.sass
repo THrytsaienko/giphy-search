@@ -5,7 +5,7 @@
 	padding: 0 20px
 
 .title
-	fill: #ffffff
+	fill: $white
 
 .logo
 	width: 150px
@@ -13,53 +13,53 @@
 .search__icon
 	width: 30px
 	height: 30px
-	fill: #fff
+	fill: $white
 
 .navbar
 	background: transparent
 	font-weight: 500
 	
 .nav-item--search
-	border-bottom: 3px solid #00ff99
+	border-bottom: 3px solid $nav-green
 	transition: background-color .5s
 	&:hover
-		background-color: #00ff99
+		background-color: $nav-green
 		   
 .nav-item--stickers
-	border-bottom: 3px solid #61d0fc
+	border-bottom: 3px solid $nav-light-blue
 	transition: background-color .5s
 	&:hover
-		background-color: #61d0fc
+		background-color: $nav-light-blue
 
 .nav-item--translate
-	border-bottom: 3px solid #3939fa
+	border-bottom: 3px solid $nav-blue
 	transition: background-color .5s
 	&:hover
-		background-color: #3939fa
+		background-color: $nav-blue
 
 .nav-item--random
-	border-bottom: 3px solid #ba32fa
+	border-bottom: 3px solid $nav-violet
 	transition: background-color .5s
 	&:hover
-		background-color: #ba32fa
+		background-color: $nav-violet
 
 .nav-item--tv
-	border-bottom: 3px solid #fd4242
+	border-bottom: 3px solid $nav-red
 	transition: background-color .5s
 	&:hover
-		background-color: #fd4242
+		background-color: $nav-red
 
 .gifLabel
-	background-color: #00ff99
+	background-color: $nav-green
 	transition: background-color .5s
 	&:hover
-		background-color: darken(#00ff99, 15%)
+		background-color: darken($nav-green, 15%)
 
 .stickerLabel
-	background-color: #61d0fc
+	background-color: $nav-light-blue
 	transition: background-color .5s
 	&:hover
-		background-color: darken(#61d0fc, 20%)
+		background-color: darken($nav-light-blue, 20%)
 
 .custom-radio
 	label:after
@@ -72,29 +72,23 @@
 	label
 		cursor: pointer
 	input:checked + label
-		background-color: #eeee0e
+		background-color: $checked-radio
 
 .custom-control-label
 	font-weight: 500
 
 .container-tv
-	width: 100%
-	height: 100vh
 	position: relative
 	.navbar
 		position: absolute
-		left: 2%
-		top: 2%
+		left: 1%
 		opacity: .5
 		z-index: 10
-	#giphy
-		width: 100%
-		height: 100vh
 	.navbar-toggler,
 	.collapse
 		display: none !important
 
-.aaa
+.tv-screen
 	margin: 0
 	padding: 0
 	width: 100%
@@ -106,3 +100,13 @@
 
 .input-group-append
 	display: none
+
+
+.recommend
+	&__text
+		font-size: 12px
+	&__icon
+		width: 20px
+		height: 20px
+		transform: skew(30deg)
+		fill: $nav-violet

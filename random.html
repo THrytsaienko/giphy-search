@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Merienda:400,700&amp;subset=latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext"
 	    rel="stylesheet">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
 	<link rel="stylesheet" href="assets/styles.css">
 	<title>GIPHY Search</title>
 </head>
@@ -55,12 +56,19 @@
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
-					<li class="nav-item nav-item--tv">
+					<li class="nav-item nav-item--tv mr-3">
 						<a class="nav-link" href="giphy-tv.html">TV</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
+
+		<div class="recommend d-flex justify-content-end">
+			<p class="text-white recommend__text mr-1 font-italic">Choose what you are looking for</p>
+			<svg class="recommend__icon my-2">
+				<use xlink:href="assets/svg/symbol/svg/sprite.symbol.svg#reply"></use>
+			</svg>
+		</div>
 
 		<div class="float-right text-white mb-3 radioStickerButton">
 			<div class="custom-control custom-radio custom-control-inline mx-0">

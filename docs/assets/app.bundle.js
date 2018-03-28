@@ -9042,9 +9042,7 @@ if (giphyPage.classList.contains('active')) {
 	var getGiphysTrending = function getGiphysTrending() {
 		_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 			return _ui.ui.showAllGiphys(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
+		}).catch(function (err) {
 			return console.log(err);
 		});
 	};
@@ -9052,17 +9050,13 @@ if (giphyPage.classList.contains('active')) {
 	var getGiphysSearch = function getGiphysSearch(searchText) {
 		_giphy.giphy.get('https://api.giphy.com/v1/gifs/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 			return _ui.ui.showAllGiphys(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
+		}).catch(function (err) {
 			return console.log(err);
 		});
 	};
 
-	console.log('giphyPage');
-	// Add event listeners
-	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
 	document.addEventListener('DOMContentLoaded', getGiphysTrending);
+
 	// Search input
 	var searchGiphy = document.querySelector('.search__input');
 
@@ -9072,16 +9066,16 @@ if (giphyPage.classList.contains('active')) {
 
 	// Search input event listener
 	searchGiphy.addEventListener('keyup', function (e) {
+
 		// Get input text
 		var searchText = e.target.value;
 
 		if (searchText !== '') {
 			searchText = searchText.split(' ').join('+');
-			console.log(searchText);
 			// Make http call
 			getGiphysSearch(searchText);
 		} else {
-			// Clear profile
+			// Make http call
 			getGiphysTrending();
 		}
 	});
@@ -9091,9 +9085,7 @@ if (stickersPage.classList.contains('active')) {
 	var getStickersTrending = function getStickersTrending() {
 		_giphy.giphy.get('https://api.giphy.com/v1/stickers/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 			return _ui.ui.showAllGiphys(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
+		}).catch(function (err) {
 			return console.log(err);
 		});
 	};
@@ -9101,17 +9093,13 @@ if (stickersPage.classList.contains('active')) {
 	var getStickersSearch = function getStickersSearch(searchText) {
 		_giphy.giphy.get('https://api.giphy.com/v1/stickers/search?q=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 			return _ui.ui.showAllGiphys(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
+		}).catch(function (err) {
 			return console.log(err);
 		});
 	};
 
-	console.log('stickersPage');
-	// Add event listeners
-	// document.addEventListener('DOMContentLoaded', getGiphys('ryan+gosling'));
 	document.addEventListener('DOMContentLoaded', getStickersTrending);
+
 	// Search input
 	var _searchGiphy = document.querySelector('.search__input');
 
@@ -9121,16 +9109,16 @@ if (stickersPage.classList.contains('active')) {
 
 	// Search input event listener
 	_searchGiphy.addEventListener('keyup', function (e) {
+
 		// Get input text
 		var searchText = e.target.value;
 
 		if (searchText !== '') {
 			searchText = searchText.split(' ').join('+');
-			console.log(searchText);
 			// Make http call
 			getStickersSearch(searchText);
 		} else {
-			// Clear profile
+			// Make http call
 			getStickersTrending();
 		}
 	});
@@ -9141,9 +9129,7 @@ if (translatePage.classList.contains('active')) {
 		var getTranslateSearchGif = function getTranslateSearchGif(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/gifs/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 				return _ui.ui.showTranslate(data);
-			})
-			// .then(data => console.log(data))
-			.catch(function (err) {
+			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
@@ -9151,31 +9137,28 @@ if (translatePage.classList.contains('active')) {
 		var getTranslateSearchSticker = function getTranslateSearchSticker(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/stickers/translate?s=' + searchText + '&api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10').then(function (data) {
 				return _ui.ui.showTranslate(data);
-			})
-			// .then(data => console.log(data))
-			.catch(function (err) {
+			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
 
-		console.log('translatePage');
 		// Search input
 		var searchGiphy = document.querySelector('.search__input');
 
 		for (var i = 0; i < document.getElementsByName('radioButton').length; i++) {
 			document.getElementsByName('radioButton')[i].onclick = function () {
-				//VALUE OF THE CLICKED RADIO ELEMENT
-				// alert(`this : ${this.value}`);
+				// Value of the clicked radio button
 				radioButton = this.value;
-				console.log(radioButton);
 				if (searchGiphy.value !== '') {
 					if (radioButton === 'Gif') {
-						console.log('Checked Gif');
+						// Make http call
 						getTranslateSearchGif(searchGiphy.value);
 					} else if (radioButton === 'Sticker') {
-						console.log('Checked Sticker');
+						// Make http call
 						getTranslateSearchSticker(searchGiphy.value);
 					}
+				} else {
+					_ui.ui.clearGiphyContainer();
 				}
 			};
 		}
@@ -9187,20 +9170,16 @@ if (translatePage.classList.contains('active')) {
 
 			if (searchText !== '') {
 				searchText = searchText.split(' ').join('+');
-				console.log(searchText);
 				if (radioButton === 'Gif') {
-					console.log('Checked Gif');
+					// Make http call
 					getTranslateSearchGif(searchText);
 				} else if (radioButton === 'Sticker') {
-					console.log('Checked Sticker');
+					// Make http call
 					getTranslateSearchSticker(searchText);
 				}
-				// Make http call
-				// getStickersSearch(searchText);
 			} else {
-					// Clear profile
-					// getStickersTrending();
-				}
+				_ui.ui.clearGiphyContainer();
+			}
 		});
 
 		;
@@ -9214,9 +9193,7 @@ if (randomPage.classList.contains('active')) {
 		var getRandomSearchGif = function getRandomSearchGif(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/gifs/random?' + searchText + 'api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4').then(function (data) {
 				return _ui.ui.showTranslate(data);
-			})
-			// .then(data => console.log(data))
-			.catch(function (err) {
+			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
@@ -9224,40 +9201,26 @@ if (randomPage.classList.contains('active')) {
 		var getRandomSearchSticker = function getRandomSearchSticker(searchText) {
 			_giphy.giphy.get('https://api.giphy.com/v1/stickers/random?' + searchText + 'api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4').then(function (data) {
 				return _ui.ui.showTranslate(data);
-			})
-			// .then(data => console.log(data))
-			.catch(function (err) {
+			}).catch(function (err) {
 				return console.log(err);
 			});
 		};
 
-		console.log('randomPage');
 		// Search input
 		var searchGiphy = document.querySelector('.search__input');
 
 		for (var i = 0; i < document.getElementsByName('radioButton').length; i++) {
 			document.getElementsByName('radioButton')[i].onclick = function () {
-				//VALUE OF THE CLICKED RADIO ELEMENT
-				// alert(`this : ${this.value}`);
+				// Value of the clicked radio button
 				radioButton = this.value;
-				console.log(radioButton);
 
 				if (radioButton === 'Gif') {
-					console.log('Checked Gif');
+					// Make http call
 					getRandomSearchGif('tag=' + searchGiphy.value + '&');
 				} else if (radioButton === 'Sticker') {
-					console.log('Checked Sticker');
+					// Make http call
 					getRandomSearchSticker('tag=' + searchGiphy.value + '&');
 				}
-				// if (searchGiphy.value !== '') {
-				// 	if (radioButton === 'Gif') {
-				// 		console.log('Checked Gif');
-				// 		getRandomSearchGif(`tag=${searchGiphy.value}&`);
-				// 	} else if (radioButton === 'Sticker') {
-				// 		console.log('Checked Sticker');
-				// 		getRandomSearchSticker(`tag=${searchGiphy.value}&`);
-				// 	}
-				// }
 			};
 		}
 
@@ -9267,13 +9230,14 @@ if (randomPage.classList.contains('active')) {
 			var searchText = e.target.value;
 
 			searchText = searchText.split(' ').join('+');
-			console.log(searchText);
-			if (radioButton === 'Gif') {
-				console.log('Checked Gif');
-				getRandomSearchGif('tag=' + searchText + '&');
-			} else if (radioButton === 'Sticker') {
-				console.log('Checked Sticker');
-				getRandomSearchSticker('tag=' + searchText + '&');
+			if (searchText !== '') {
+				if (radioButton === 'Gif') {
+					// Make http call
+					getRandomSearchGif('tag=' + searchText + '&');
+				} else if (radioButton === 'Sticker') {
+					// Make http call
+					getRandomSearchSticker('tag=' + searchText + '&');
+				}
 			}
 		});
 
@@ -9287,21 +9251,18 @@ if (tvPage.classList.contains('active')) {
 	var getGiphysTV = function getGiphysTV() {
 		_giphy.giphy.get('https://api.giphy.com/v1/gifs/random?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=1').then(function (data) {
 			return _ui.ui.showTV(data);
-		})
-		// .then(data => console.log(data))
-		.catch(function (err) {
+		}).catch(function (err) {
 			return console.log(err);
 		});
 	};
 
-	console.log('tvPage');
 	document.addEventListener('DOMContentLoaded', getGiphysTV);
 
 	;
 
 	setInterval(function () {
 		getGiphysTV();
-	}, 10000);
+	}, 5000);
 }
 
 /***/ }),
@@ -9442,12 +9403,14 @@ var UI = function () {
 		}
 	}, {
 		key: 'showTV',
-		value: function showTV() {
-			var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.receivedGifForTV;
-
-			console.log('tvPage in ui');
+		value: function showTV(data) {
 			this.receivedGifForTV = data.data;
-			this.giphyContainer.innerHTML = '\n\t\t\t<div class="aaa" style="background-image:url(' + this.receivedGifForTV.images.original.url + ');">\n\t\t\t</div>\n\t\t';
+			this.giphyContainer.innerHTML = '\n\t\t\t<div class="tv-screen" style="background-image:url(' + this.receivedGifForTV.images.original.url + ');">\n\t\t\t</div>\n\t\t';
+		}
+	}, {
+		key: 'clearGiphyContainer',
+		value: function clearGiphyContainer() {
+			this.giphyContainer.innerHTML = '';
 		}
 	}]);
 

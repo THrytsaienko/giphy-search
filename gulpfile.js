@@ -65,7 +65,7 @@ gulp.task('watch', function() {
 
 gulp.task('copy', function(){
 	return gulp.src([
-			'src/assets/**/*.{jpg,png,jpeg,gif}'
+			'src/**/*.{jpg,png,jpeg,gif}'
 		])
 		.pipe(gulp.dest('./docs/assets'))
 });
