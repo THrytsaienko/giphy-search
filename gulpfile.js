@@ -61,6 +61,7 @@ var reload = function(done){
 gulp.task('watch', function() {
 	gulp.watch('./*.html', gulp.series('html', reload));
 	gulp.watch('./src/sass/*.sass', gulp.series('sass'));
+	gulp.watch('./src/js/barba.js', gulp.series('js'));
 });
 
 gulp.task('copy', function(){
@@ -70,11 +71,18 @@ gulp.task('copy', function(){
 		.pipe(gulp.dest('./docs/assets'))
 });
 
+gulp.task('js', function(){
+	return gulp.src([
+			'src/js/barba.js'
+		])
+		.pipe(gulp.dest('./docs/assets'))
+});
+
 gulp.task('clean', function() {
 	return del('docs');
 });
 
-gulp.task('build', gulp.parallel('html', 'sass', 'sprites', 'copy'));
+gulp.task('build', gulp.parallel('html', 'sass', 'sprites', 'copy', 'js'));
 
 gulp.task('start', gulp.parallel('webpack', 'watch', 'serve'));
 
