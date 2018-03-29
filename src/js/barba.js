@@ -56,6 +56,8 @@ var FadeTransition = Barba.BaseTransition.extend({
 			opacity: 0
 		});
 
+		$(document).trigger("pageInit", $el);
+
 		$el.animate({
 			opacity: 1
 		}, 400, function () {
