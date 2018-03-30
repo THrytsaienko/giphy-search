@@ -1,6 +1,6 @@
-# General Knowledge Multiple Choice Quiz
+# GIPHY Search
 
-For starting quiz input your name and press "Start Qiuz" button.
+You can search gifs, stickers, translate words to gifs/stickers, and you can watching GIPHY TV :tv: :smile: :clap:
 
 #### For developers
 
