@@ -11,7 +11,18 @@ const stickersPage = document.querySelector('.nav-item--stickers');
 const translatePage = document.querySelector('.nav-item--translate');
 const randomPage = document.querySelector('.nav-item--random');
 const tvPage = document.querySelector('.nav-item--tv');
+const showMoreButton = document.querySelector('#show-more');
 let radioButton;
+
+let offsetNumber = 10;
+
+
+showMoreButton.addEventListener("click", function (offsetNumber) {
+	let offset = offsetNumber+10;
+	giphy.get(`https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10&offset=${offset}`)
+		.then(data => ui.showAllGiphys(data))
+		.catch(err => console.log(err));
+});
 
 // Check on what page we are - what page is active
 if (giphyPage.classList.contains('active')) {

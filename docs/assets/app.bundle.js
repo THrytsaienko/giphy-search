@@ -9037,7 +9037,19 @@ var stickersPage = document.querySelector('.nav-item--stickers');
 var translatePage = document.querySelector('.nav-item--translate');
 var randomPage = document.querySelector('.nav-item--random');
 var tvPage = document.querySelector('.nav-item--tv');
+var showMoreButton = document.querySelector('#show-more');
 var radioButton = void 0;
+
+var offsetNumber = 10;
+
+showMoreButton.addEventListener("click", function (offsetNumber) {
+	var offset = offsetNumber + 10;
+	_giphy.giphy.get('https://api.giphy.com/v1/gifs/trending?api_key=3qihbJMIkDcADvA3dKAAXfgjzspM7Js4&limit=10&offset=' + offset).then(function (data) {
+		return _ui.ui.showAllGiphys(data);
+	}).catch(function (err) {
+		return console.log(err);
+	});
+});
 
 // Check on what page we are - what page is active
 if (giphyPage.classList.contains('active')) {
@@ -9377,6 +9389,7 @@ var UI = function () {
 		value: function showAllGiphys(giphys) {
 			this.responseReceived = giphys.data;
 			var output = '';
+			// let output;
 
 			this.responseReceived.forEach(function (giphy, index) {
 				return output += '\n\t\t\t\t\t<div class="card m-2">\n\t\t\t\t\t\t<a href="' + giphy.images.original.url + '">\n\t\t\t\t\t\t\t<img class="card-img" src="' + giphy.images.fixed_height.url + '" style="width:' + giphy.images.fixed_height.width + '; height:' + giphy.images.fixed_height.height + '" alt="Card image">\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t';

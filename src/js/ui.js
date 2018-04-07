@@ -10,6 +10,7 @@ class UI {
 	showAllGiphys(giphys) {
 		this.responseReceived = giphys.data;
 		let output = '';
+		// let output;
 
 		this.responseReceived.forEach((giphy, index) => {
 			return output += `
